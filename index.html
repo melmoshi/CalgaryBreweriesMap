@@ -1,0 +1,74 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <title>Calgary Breweries</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+      
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.css' rel='stylesheet' />
+    <link href='./main.css' rel='stylesheet' />
+
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      #map {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+      
+  </head>
+    
+    
+  <body>
+    <div id='map'></div>
+      
+      
+    <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoibWVsYW5pZW1vc2hpIiwiYSI6ImNqY2d0NnRzYTF2aXMzMnQ5MnZnb2I4a3MifQ.0Ubr0ieBnu5SqZ_Vh3nkRw'; //your access token
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/melaniemoshi/cjco2y7jj30nx2smj7bcgikvp' //your style URL
+    });
+    // code from the next step will go here:
+        
+     map.on('click', function(e) {
+         
+          var features = map.queryRenderedFeatures(e.point, {
+            layers: ['calgary-breweries'] //the name of the layer
+          });
+
+          if (!features.length) {
+            return;
+          }
+
+          var feature = features[0];
+
+          var popup = new mapboxgl.Popup({ offset: [0, -15] })
+            .setLngLat(feature.geometry.coordinates)
+            .setHTML('<div class="popup">' + 
+                     '<h3>' + feature.properties.Name + '</h3>' +
+                     '<a href="' + feature.properties.Website + '">' + feature.properties.Website + '</a>' +
+                     '<p class="phone">' + feature.properties.PhoneNumbe + '</p>' +
+                     '<p>' + "<span style='font-weight:bold;'>Google Rating: </span> " + feature.properties.GoogleRati + '</p>' +
+                     '<p>' + "<span style='font-weight:bold;'>Beer Advocate Rating:</span> " + feature.properties.BeerAdRati + '</p>' +
+                     '<p>' + "<span style='font-weight:bold;'>Favourite Beers:</span> " + feature.properties.Favorites + '</p>' +
+                     '<p>' +"<span style='font-weight:bold;'>Recommendation:</span> "  + feature.properties.Reviewer +  " " + feature.properties.Review + '</p>' + '</div>') //CHANGE WHAT TO DISPLAY
+            .setLngLat(feature.geometry.coordinates)
+            .addTo(map);
+        });   
+        
+        
+        
+    </script>
+      
+  </body>
+</html>
