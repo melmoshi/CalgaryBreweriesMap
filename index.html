@@ -10,6 +10,10 @@
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.31.0/mapbox-gl.css' rel='stylesheet' />
     <link href='./main.css' rel='stylesheet' />
+      
+        <!--  FONTS  -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
 
     <style>
       body {
@@ -31,6 +35,19 @@
   <body>
     <div id='map'></div>
       
+    <div class='map-overlay' id='features'>
+            <h2 id="yearTitle">Calgary Breweries</h2>
+            <div id='pd'>
+                <p>Click on a brewery near you!</p>
+            </div>
+        </div>
+      
+    <div class='map-overlay' id='info'>
+            <P><strong>Moshi - 2018</strong></P>
+            <P>Various Data Sources </P>
+
+        
+        </div>
       
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoibWVsYW5pZW1vc2hpIiwiYSI6ImNqY2d0NnRzYTF2aXMzMnQ5MnZnb2I4a3MifQ.0Ubr0ieBnu5SqZ_Vh3nkRw'; //your access token
@@ -56,12 +73,13 @@
             .setLngLat(feature.geometry.coordinates)
             .setHTML('<div class="popup">' + 
                      '<h3>' + feature.properties.Name + '</h3>' +
-                     '<a href="' + feature.properties.Website + '">' + feature.properties.Website + '</a>' +
+                     '<a href="' + feature.properties.Website + '">' + feature.properties.Website + '</a>' + 
                      '<p class="phone">' + feature.properties.PhoneNumbe + '</p>' +
                      '<p>' + "<span style='font-weight:bold;'>Google Rating: </span> " + feature.properties.GoogleRati + '</p>' +
-                     '<p>' + "<span style='font-weight:bold;'>Beer Advocate Rating:</span> " + feature.properties.BeerAdRati + '</p>' +
-                     '<p>' + "<span style='font-weight:bold;'>Favourite Beers:</span> " + feature.properties.Favorites + '</p>' +
-                     '<p>' +"<span style='font-weight:bold;'>Recommendation:</span> "  + feature.properties.Reviewer +  " " + feature.properties.Review + '</p>' + '</div>') //CHANGE WHAT TO DISPLAY
+                     '<p class="phone">' + "<span style='font-weight:bold; margin-top:0px;'>Beer Advocate Rating:</span> " + feature.properties.BeerAdRati + '</p>' +
+                     '<p class="phone">' + "<span style='font-weight:bold;'>Favourite Beers:</span> " + feature.properties.Favorites + '</p>' +
+                     '<p id="reviewHeader">' + "<span style='font-weight:bold;'>" + feature.properties.Reviewer + "</span>" + "<br /> " + '</p>' + '<p class="beerReview">' + feature.properties.Review + '</p>' + '</div>') //CHANGE WHAT TO DISPLAY
+          
             .setLngLat(feature.geometry.coordinates)
             .addTo(map);
         });   
