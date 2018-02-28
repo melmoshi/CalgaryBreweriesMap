@@ -14,6 +14,11 @@
         <!--  FONTS  -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Kalam" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+      
+      
+      <!-- Fav Icon -->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon2.ico" />
 
     <style>
       body {
@@ -45,15 +50,16 @@
     <div class='map-overlay' id='info'>
             <P><strong>Moshi - 2018</strong></P>
             <P>Various Data Sources </P>
-
-        
+            <a id="mapsLink" href="https://melmoshi.github.io" target="_blank"><strong>View More Maps</strong></a>
         </div>
       
     <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoibWVsYW5pZW1vc2hpIiwiYSI6ImNqY2d0NnRzYTF2aXMzMnQ5MnZnb2I4a3MifQ.0Ubr0ieBnu5SqZ_Vh3nkRw'; //your access token
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/melaniemoshi/cjco2y7jj30nx2smj7bcgikvp' //your style URL
+      style: 'mapbox://styles/melaniemoshi/cjco2y7jj30nx2smj7bcgikvp', //your style URL
+      center: [-114.046,51.063],
+      zoom: 11.1
     });
     // code from the next step will go here:
         
